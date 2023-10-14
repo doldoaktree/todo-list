@@ -1,0 +1,20 @@
+name: deploy_to_vercel
+on:
+  push:
+    branches:
+      - release
+defaults:
+  run:
+    working-directory: ./nextjs
+jobs:
+  run_tests_and_deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "18.18.2"
+      - run: |
+         npm install
+         npm run lint
+
